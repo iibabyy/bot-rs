@@ -7,8 +7,6 @@ use tracing::{info, instrument};
 
 use crate::core::*;
 
-const X_LINK: &str = "https://www.twitter-viewer.com/api/x/tweet?tweetId=";
-
 pub struct TwitterScraper;
 
 impl TwitterScraper {
@@ -121,7 +119,7 @@ impl TwitterScraper {
 
     #[instrument]
     fn scraper_link(post_id: &str) -> Result<reqwest::Url, BotError> {
-        let link = format!("{X_LINK}{post_id}");
+        let link = format!("{}{post_id}", crate::twitter::config::X_LINK);
         Url::from_str(&link).map_err(|err| invalid_link!("{link}: {err}"))
     }
 }
