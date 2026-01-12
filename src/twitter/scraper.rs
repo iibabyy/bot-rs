@@ -117,9 +117,9 @@ impl TwitterScraper {
         Ok(medias)
     }
 
-    #[instrument]
     fn scraper_link(post_id: &str) -> Result<reqwest::Url, BotError> {
-        let link = format!("{}{post_id}", crate::twitter::config::X_LINK);
+        let scraper_link = crate::twitter::config::TWITTER_SCRAPER_LINK;
+        let link = format!("{scraper_link}{post_id}");
         Url::from_str(&link).map_err(|err| invalid_link!("{link}: {err}"))
     }
 }
