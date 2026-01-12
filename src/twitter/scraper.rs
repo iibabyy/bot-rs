@@ -7,7 +7,7 @@ use tracing::{info, instrument};
 
 use crate::core::*;
 
-pub struct TwitterScraper;
+pub enum TwitterScraper {}
 
 impl TwitterScraper {
     #[instrument(skip_all, fields(input = %input))]
